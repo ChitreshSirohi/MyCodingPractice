@@ -2,15 +2,27 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <annotationProcessing>
+      <profile default="true" name="Default">
+        <processorPath useClasspath="false" />
+      </profile>
       <profile name="Maven default annotation processors profile" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <processorPath>
+          <entry name="$PROJECT_DIR$/out/artifacts/MyAnnotations_jar/MyAnnotations.jar" />
+        </processorPath>
         <module name="MyCodingPractice" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="MyCodingPractice" target="1.8" />
     </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_STRING" value="-processor com.aemo.annotations.MSATS_EnumProcessor" />
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="MyCodingPractice" options="" />
+    </option>
   </component>
 </project>

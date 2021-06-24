@@ -8,19 +8,46 @@ import java.util.List;
 public class NumberAmazonTreasureTrucks
 {
     // METHOD SIGNATURE BEGINS, THIS METHOD IS REQUIRED
-    int numberAmazonTreasureTrucks(int rows, int column,
-                                   List<List<Integer> > grid){
+    int numberAmazonTreasureTrucks(char[][] grid){
 
- 
-    return 0;
-}
-
-    private int getParent(int[] parent, int i) {
-        while (parent[i] != i) {
-            i = parent[i];
+        //boolean[][] visitedArray = new boolean[grid.length][grid[0].length];
+        int rows=grid.length;
+        int cols=grid[0].length;
+        int noOfIslands=0;
+        for (int row=0;row<rows;row++){
+            for (int col=0;col<cols;col++){
+                if(grid[row][col]=='1'){
+                    dfs(grid,row,col,rows,cols);
+                    noOfIslands++;
+                }
+            }
         }
 
-        return i;
+
+ 
+    return noOfIslands;
+}
+    private boolean isWithinBoundaryAndValid(char[][] grid, int row, int col ){
+        if(row < 0 || grid.length <= row){
+            return false;
+        }else if (col < 0 || grid[0].length <= col ){
+            return false;
+        }
+        if(grid[row][col] != '1'){
+            return false;
+        }
+        return true;
     }
-    // METHOD SIGNATURE ENDS
+
+    private void dfs(char[][] grid,int row,int col,int rows, int cols ){
+        if(isWithinBoundaryAndValid(grid,row,col)){
+            grid[row][col]='X';
+            dfs( grid, row+1, col, rows, cols);
+            dfs( grid, row-1, col, rows, cols);
+            dfs( grid, row, col+1, rows, cols);
+            dfs( grid, row, col-1, rows, cols);
+        }
+    }
+
+
 }
